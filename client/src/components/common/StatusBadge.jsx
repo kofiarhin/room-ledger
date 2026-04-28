@@ -8,7 +8,7 @@ const statusStyles = {
 export function StatusBadge({ status }) {
   return (
     <span
-      className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-semibold capitalize ${statusStyles[status] || statusStyles.cancelled}`}
+      className={`inline-flex min-h-7 items-center rounded-full border px-3 py-1 text-xs font-semibold capitalize ${statusStyles[status] || statusStyles.cancelled}`}
     >
       {status}
     </span>

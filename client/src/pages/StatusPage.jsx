@@ -11,13 +11,16 @@ export function StatusPage() {
   const bookingQuery = useBookingStatus(bookingId)
 
   return (
-    <div className="mx-auto grid max-w-3xl gap-6">
-      <div>
-        <h1 className="text-3xl font-semibold tracking-tight text-zinc-950">Check booking status</h1>
-        <p className="mt-2 text-zinc-600">Enter the booking ID you received after submitting a request.</p>
+    <div className="mx-auto grid max-w-4xl gap-6">
+      <div className="rounded-[2rem] border border-zinc-200 bg-white p-6 shadow-[0_24px_60px_-42px_rgba(24,24,27,0.6)] sm:p-8">
+        <p className="text-sm font-semibold uppercase tracking-wide text-emerald-800">Booking lookup</p>
+        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-950 sm:text-4xl">Check booking status</h1>
+        <p className="mt-3 max-w-2xl text-base leading-7 text-zinc-600">
+          Enter the booking ID you received after submitting a request. Pending bookings can still be edited or cancelled.
+        </p>
       </div>
       <form
-        className="grid gap-3 rounded-lg border border-zinc-200 bg-white p-5 shadow-sm sm:grid-cols-[1fr_auto]"
+        className="grid gap-3 rounded-[1.5rem] border border-zinc-200 bg-white p-4 shadow-sm sm:grid-cols-[1fr_auto] sm:p-5"
         onSubmit={(event) => {
           event.preventDefault()
           setBookingId(input.trim().toUpperCase())
@@ -25,7 +28,7 @@ export function StatusPage() {
       >
         <InputField label="Booking ID" value={input} onChange={(event) => setInput(event.target.value)} placeholder="RL-20260504-ABCD" />
         <div className="flex items-end">
-          <Button type="submit">Look up</Button>
+          <Button type="submit" className="w-full sm:w-auto">Look up</Button>
         </div>
       </form>
       {bookingQuery.isLoading ? <SkeletonBlock className="h-48" /> : null}

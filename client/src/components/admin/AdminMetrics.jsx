@@ -18,7 +18,7 @@ export function AdminMetrics({ bookings }) {
   return (
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
       {items.map(([label, value]) => (
-        <div key={label} className="rounded-lg border border-zinc-200 bg-white p-4 shadow-sm">
+        <div key={label} className="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm">
           <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">{label}</p>
           <p className="mt-2 font-mono text-2xl font-semibold text-zinc-950">{value}</p>
         </div>

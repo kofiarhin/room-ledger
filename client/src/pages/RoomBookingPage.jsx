@@ -23,24 +23,37 @@ export function RoomBookingPage() {
 
   const room = roomQuery.data
   const slots = availabilityQuery.data?.slots || []
+  const availableStartCount = slots.filter((slot) => slot.durations.length > 0).length
 
   return (
-    <div className="grid gap-8">
-      <div>
-        <Link className="text-sm font-medium text-emerald-800" to="/">Back to rooms</Link>
-        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-950">{room.name}</h1>
-        <p className="mt-2 max-w-2xl text-zinc-600">Choose an hourly slot between 08:00 and 17:00, Monday through Friday.</p>
+    <div className="grid gap-6">
+      <div className="overflow-hidden rounded-[2rem] border border-zinc-200 bg-zinc-950 text-white shadow-[0_28px_70px_-48px_rgba(24,24,27,0.9)]">
+        <div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-end lg:p-9">
+          <div>
+            <Link className="text-sm font-semibold text-emerald-300 hover:text-emerald-200" to="/">Back to rooms</Link>
+            <p className="mt-6 text-sm font-semibold uppercase tracking-wide text-zinc-400">Conference room</p>
+            <h1 className="mt-3 text-4xl font-semibold leading-none tracking-tight sm:text-5xl">{room.name}</h1>
+            <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-300">
+              Pick a weekday, choose one of the available hourly starts, then send the request for review.
+            </p>
+          </div>
+          <div className="grid grid-cols-3 gap-2 text-center text-xs font-semibold text-zinc-300 sm:min-w-96">
+            <span className="rounded-full bg-white/[0.06] px-3 py-2">08:00-17:00</span>
+            <span className="rounded-full bg-white/[0.06] px-3 py-2">1-9 hrs</span>
+            <span className="rounded-full bg-white/[0.06] px-3 py-2">{availableStartCount || 0} starts</span>
+          </div>
+        </div>
       </div>
 
       {createdBooking ? (
-        <section className="grid gap-5 rounded-lg border border-emerald-200 bg-emerald-50 p-6">
+        <section className="grid gap-5 rounded-[2rem] border border-emerald-200 bg-emerald-50 p-5 shadow-[0_24px_60px_-42px_rgba(4,120,87,0.55)] sm:p-6">
           <div>
             <h2 className="text-xl font-semibold text-emerald-950">Booking request received</h2>
             <p className="mt-2 text-sm text-emerald-900">Save this booking ID to check status later.</p>
           </div>
           <BookingSummary booking={createdBooking} />
-          <div className="flex flex-wrap gap-2">
-            <Link className="rounded-md bg-emerald-800 px-4 py-2 text-sm font-medium text-white" to="/status">
+          <div className="grid gap-2 sm:flex sm:flex-wrap">
+            <Link className="inline-flex min-h-11 items-center justify-center rounded-full bg-emerald-800 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-900" to="/status">
               Check status
             </Link>
             <Button variant="secondary" onClick={() => setCreatedBooking(null)}>
@@ -49,31 +62,66 @@ export function RoomBookingPage() {
           </div>
         </section>
       ) : (
-        <section className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
-          <aside className="grid content-start gap-4 rounded-lg border border-zinc-200 bg-white p-5 shadow-sm">
-            <DatePickerField value={date} onChange={setDate} />
-            {availabilityQuery.isLoading ? <SkeletonBlock className="h-36" /> : null}
-            <ErrorMessage message={availabilityQuery.error ? 'Availability could not be loaded for that date.' : ''} />
-            {availabilityQuery.data ? (
-              <div className="grid gap-3">
-                <h2 className="text-sm font-semibold text-zinc-950">Blocked intervals</h2>
-                {availabilityQuery.data.blockedIntervals.length ? (
-                  <ul className="grid gap-2 text-sm text-zinc-700">
-                    {availabilityQuery.data.blockedIntervals.map((interval) => (
-                      <li key={interval.bookingId} className="rounded-md bg-zinc-100 px-3 py-2">
-                        {interval.startTime}-{interval.endTime} ({interval.status})
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <EmptyState title="Fully open" message="No pending or approved bookings block this date." />
-                )}
+        <section className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+          <aside className="grid content-start gap-4 lg:sticky lg:top-28">
+            <div className="rounded-[1.5rem] border border-zinc-200 bg-white p-4 shadow-sm sm:p-5">
+              <div className="mb-4">
+                <p className="text-sm font-semibold uppercase tracking-wide text-emerald-800">Step 1</p>
+                <h2 className="mt-1 text-xl font-semibold tracking-tight text-zinc-950">Pick a date</h2>
               </div>
-            ) : null}
+              <DatePickerField value={date} onChange={setDate} />
+            </div>
+
+            <div className="rounded-[1.5rem] border border-zinc-200 bg-white p-4 shadow-sm sm:p-5">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-wide text-emerald-800">Availability</p>
+                  <h2 className="mt-1 text-xl font-semibold tracking-tight text-zinc-950">Day summary</h2>
+                </div>
+                <span className="rounded-full bg-zinc-100 px-3 py-1 font-mono text-xs font-semibold text-zinc-700">
+                  {date}
+                </span>
+              </div>
+              {availabilityQuery.isLoading ? <SkeletonBlock className="mt-4 h-36" /> : null}
+              <ErrorMessage message={availabilityQuery.error ? 'Availability could not be loaded for that date.' : ''} />
+              {availabilityQuery.data ? (
+                <div className="mt-4 grid gap-4">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="rounded-2xl bg-emerald-50 p-4">
+                      <p className="text-xs font-semibold uppercase tracking-wide text-emerald-800">Available starts</p>
+                      <p className="mt-2 font-mono text-3xl font-semibold text-emerald-950">{availableStartCount}</p>
+                    </div>
+                    <div className="rounded-2xl bg-zinc-100 p-4">
+                      <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500">Blocked</p>
+                      <p className="mt-2 font-mono text-3xl font-semibold text-zinc-950">
+                        {availabilityQuery.data.blockedIntervals.length}
+                      </p>
+                    </div>
+                  </div>
+                  {availabilityQuery.data.blockedIntervals.length ? (
+                    <ul className="grid gap-2 text-sm text-zinc-700">
+                      {availabilityQuery.data.blockedIntervals.map((interval) => (
+                        <li key={interval.bookingId} className="flex items-center justify-between gap-3 rounded-2xl bg-zinc-100 px-3 py-2">
+                          <span className="font-mono text-xs font-semibold text-zinc-950">
+                            {interval.startTime}-{interval.endTime}
+                          </span>
+                          <span className="text-xs capitalize text-zinc-600">{interval.status}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <EmptyState title="Fully open" message="No pending or approved bookings block this date." />
+                  )}
+                </div>
+              ) : null}
+            </div>
           </aside>
-          <div className="rounded-lg border border-zinc-200 bg-white p-5 shadow-sm">
-            <h2 className="text-xl font-semibold text-zinc-950">Request this room</h2>
-            <p className="mb-5 mt-2 text-sm text-zinc-600">Requests stay pending until an admin reviews them.</p>
+          <div className="rounded-[1.5rem] border border-zinc-200 bg-white p-4 shadow-[0_20px_48px_-38px_rgba(24,24,27,0.55)] sm:p-6">
+            <div className="mb-5 border-b border-zinc-200 pb-5">
+              <p className="text-sm font-semibold uppercase tracking-wide text-emerald-800">Booking request</p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-zinc-950">Request this room</h2>
+              <p className="mt-2 text-sm leading-6 text-zinc-600">Requests stay pending until an admin reviews them.</p>
+            </div>
             <BookingForm
               room={room}
               date={date}

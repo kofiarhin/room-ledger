@@ -24,10 +24,13 @@ export function AdminBookingEditor({ booking }) {
   }
 
   return (
-    <form className="grid gap-3" onSubmit={(event) => {
-      event.preventDefault()
-      mutation.mutate({ id: booking.id, payload: form })
-    }}>
+    <form
+      className="grid gap-4 rounded-2xl border border-zinc-200 bg-zinc-50 p-4"
+      onSubmit={(event) => {
+        event.preventDefault()
+        mutation.mutate({ id: booking.id, payload: form })
+      }}
+    >
       <div className="grid gap-3 md:grid-cols-3">
         <InputField label="Name" value={form.requesterName} onChange={(event) => update('requesterName', event.target.value)} />
         <InputField label="Email" value={form.requesterEmail} onChange={(event) => update('requesterEmail', event.target.value)} />
@@ -53,7 +56,7 @@ export function AdminBookingEditor({ booking }) {
       </div>
       <TextareaField label="Purpose" value={form.purpose} onChange={(event) => update('purpose', event.target.value)} />
       <InputField label="Admin note" value={form.adminNote} onChange={(event) => update('adminNote', event.target.value)} />
-      <Button type="submit" disabled={mutation.isPending}>
+      <Button type="submit" disabled={mutation.isPending} className="w-full sm:w-auto sm:justify-self-start">
         {mutation.isPending ? 'Saving...' : 'Save admin edits'}
       </Button>
       {mutation.error ? <p className="text-sm text-rose-700">Save failed. Check booking conflicts and required fields.</p> : null}

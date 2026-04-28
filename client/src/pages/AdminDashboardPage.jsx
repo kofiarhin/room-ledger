@@ -19,13 +19,15 @@ export function AdminDashboardPage() {
 
   return (
     <div className="grid gap-6">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div className="rounded-[2rem] border border-zinc-200 bg-white p-6 shadow-[0_24px_60px_-42px_rgba(24,24,27,0.6)] sm:flex sm:items-end sm:justify-between sm:gap-6 sm:p-8">
         <div>
-          <h1 className="text-3xl font-semibold tracking-tight text-zinc-950">Admin dashboard</h1>
-          <p className="mt-2 text-zinc-600">Review, approve, deny, edit, and delete booking requests.</p>
+          <p className="text-sm font-semibold uppercase tracking-wide text-emerald-800">Operations</p>
+          <h1 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-950 sm:text-4xl">Admin dashboard</h1>
+          <p className="mt-3 max-w-2xl text-base leading-7 text-zinc-600">Review, approve, deny, edit, and delete booking requests.</p>
         </div>
         <Button
           variant="secondary"
+          className="mt-5 w-full sm:mt-0 sm:w-auto"
           onClick={() => logout.mutate(undefined, { onSettled: () => navigate('/admin/login') })}
         >
           Sign out

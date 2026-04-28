@@ -6,7 +6,7 @@ export function AdminBookingFilters({ filters, setFilters, rooms }) {
   }
 
   return (
-    <div className="grid gap-4 rounded-lg border border-zinc-200 bg-white p-4 shadow-sm md:grid-cols-4">
+    <div className="grid gap-4 rounded-[1.5rem] border border-zinc-200 bg-white p-4 shadow-sm md:grid-cols-4">
       <SelectField label="Status" value={filters.status} onChange={(event) => update('status', event.target.value)}>
         <option value="">All statuses</option>
         <option value="pending">Pending</option>

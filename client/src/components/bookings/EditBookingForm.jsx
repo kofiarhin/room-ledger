@@ -29,9 +29,9 @@ export function EditBookingForm({ booking }) {
   }
 
   return (
-    <form className="grid gap-4" onSubmit={handleSubmit}>
+    <form className="grid gap-4 rounded-2xl border border-zinc-200 bg-zinc-50 p-4" onSubmit={handleSubmit}>
       <ErrorMessage message={mutation.error ? apiErrorMessage(mutation.error) : ''} />
-      {mutation.isSuccess ? <p className="text-sm text-emerald-700">Booking updated.</p> : null}
+      {mutation.isSuccess ? <p className="rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-800">Booking updated.</p> : null}
       <div className="grid gap-4 sm:grid-cols-2">
         <InputField label="Name" value={form.requesterName} onChange={(event) => update('requesterName', event.target.value)} />
         <InputField label="Email" type="email" value={form.requesterEmail} onChange={(event) => update('requesterEmail', event.target.value)} />
@@ -58,7 +58,7 @@ export function EditBookingForm({ booking }) {
         </SelectField>
       </div>
       <TextareaField label="Purpose" value={form.purpose} onChange={(event) => update('purpose', event.target.value)} />
-      <Button type="submit" disabled={mutation.isPending}>
+      <Button type="submit" disabled={mutation.isPending} className="w-full sm:w-auto sm:justify-self-start">
         {mutation.isPending ? 'Saving...' : 'Save changes'}
       </Button>
     </form>

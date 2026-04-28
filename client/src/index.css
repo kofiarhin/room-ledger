@@ -17,8 +17,9 @@ body {
   min-width: 320px;
   min-height: 100dvh;
   background:
-    linear-gradient(180deg, rgba(248, 250, 252, 0.96), rgba(241, 245, 249, 0.96)),
-    #f8fafc;
+    radial-gradient(circle at top left, rgba(16, 185, 129, 0.08), transparent 34rem),
+    linear-gradient(180deg, rgba(250, 250, 250, 0.98), rgba(244, 244, 245, 0.98)),
+    #fafafa;
 }
 
 button,
@@ -31,4 +32,8 @@ textarea {
 button:active,
 a:active {
   transform: translateY(1px);
+}
+
+::selection {
+  background: rgba(4, 120, 87, 0.16);
 }

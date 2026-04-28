@@ -74,11 +74,11 @@ export function DatePickerField({ value, onChange }) {
         <span className="text-xs text-zinc-500">Weekdays only.</span>
       </div>
 
-      <div className="rounded-lg border border-zinc-200 bg-white p-3 shadow-sm">
+      <div className="rounded-2xl border border-zinc-200 bg-white p-3 shadow-sm">
         <div className="mb-3 flex items-center justify-between gap-3">
           <button
             type="button"
-            className="grid size-9 place-items-center rounded-md border border-zinc-200 text-zinc-700 transition hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 active:translate-y-px"
+            className="grid size-10 place-items-center rounded-full border border-zinc-200 text-zinc-700 transition hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 active:translate-y-px"
             onClick={() => moveMonth(-1)}
             aria-label="Previous month"
           >
@@ -89,7 +89,7 @@ export function DatePickerField({ value, onChange }) {
           </p>
           <button
             type="button"
-            className="grid size-9 place-items-center rounded-md border border-zinc-200 text-zinc-700 transition hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 active:translate-y-px"
+            className="grid size-10 place-items-center rounded-full border border-zinc-200 text-zinc-700 transition hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 active:translate-y-px"
             onClick={() => moveMonth(1)}
             aria-label="Next month"
           >
@@ -113,7 +113,7 @@ export function DatePickerField({ value, onChange }) {
               <button
                 type="button"
                 key={dateKey}
-                className={`aspect-square rounded-md text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-emerald-700/20 ${
+                className={`aspect-square min-h-10 rounded-xl text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-emerald-700/20 ${
                   selected
                     ? 'bg-zinc-950 text-white'
                     : 'text-zinc-800 hover:bg-emerald-50 hover:text-emerald-800'

@@ -14,15 +14,15 @@ export function BookingStatusPanel({ booking }) {
   const isReadOnly = booking.status !== 'pending'
 
   return (
-    <div className="grid gap-6 rounded-lg border border-zinc-200 bg-white p-6 shadow-sm">
+    <div className="grid gap-6 rounded-[1.5rem] border border-zinc-200 bg-white p-5 shadow-[0_20px_48px_-38px_rgba(24,24,27,0.55)] sm:p-6">
       <BookingSummary booking={booking} />
       <ErrorMessage message={cancelMutation.error ? apiErrorMessage(cancelMutation.error) : ''} />
       {isReadOnly ? (
-        <p className="rounded-md bg-zinc-100 px-4 py-3 text-sm text-zinc-700">
+        <p className="rounded-2xl bg-zinc-100 px-4 py-3 text-sm text-zinc-700">
           This booking is read-only because its status is {booking.status}.
         </p>
       ) : (
-        <div className="flex flex-wrap gap-2">
+        <div className="grid gap-2 sm:flex sm:flex-wrap">
           <Button variant="secondary" onClick={() => setIsEditing((value) => !value)}>
             {isEditing ? 'Close editor' : 'Edit pending booking'}
           </Button>

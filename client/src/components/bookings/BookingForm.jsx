@@ -54,20 +54,31 @@ export function BookingForm({ room, date, slots, mutation, onSuccess, initialVal
   }
 
   return (
-    <form className="grid gap-4" onSubmit={handleSubmit}>
+    <form className="grid gap-5" onSubmit={handleSubmit}>
       <ErrorMessage message={mutation.error ? apiErrorMessage(mutation.error) : ''} />
-      <SlotPicker
-        slots={slots}
-        startTime={form.startTime}
-        durationHours={form.durationHours}
-        onStartChange={(value) => {
-          updateField('startTime', value)
-          updateField('durationHours', '')
-        }}
-        onDurationChange={(value) => updateField('durationHours', value)}
-      />
-      {errors.startTime ? <p className="-mt-2 text-xs text-rose-700">{errors.startTime}</p> : null}
-      {errors.durationHours ? <p className="-mt-2 text-xs text-rose-700">{errors.durationHours}</p> : null}
+      <section className="grid gap-3 rounded-3xl border border-zinc-200 bg-zinc-50 p-4">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-wide text-emerald-800">Step 2</p>
+          <h3 className="mt-1 text-lg font-semibold tracking-tight text-zinc-950">Choose a slot</h3>
+        </div>
+        <SlotPicker
+          slots={slots}
+          startTime={form.startTime}
+          durationHours={form.durationHours}
+          onStartChange={(value) => {
+            updateField('startTime', value)
+            updateField('durationHours', '')
+          }}
+          onDurationChange={(value) => updateField('durationHours', value)}
+        />
+        {errors.startTime ? <p className="text-xs text-rose-700">{errors.startTime}</p> : null}
+        {errors.durationHours ? <p className="text-xs text-rose-700">{errors.durationHours}</p> : null}
+      </section>
+      <section className="grid gap-4 rounded-3xl border border-zinc-200 bg-white p-4">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-wide text-emerald-800">Step 3</p>
+          <h3 className="mt-1 text-lg font-semibold tracking-tight text-zinc-950">Requester details</h3>
+        </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <InputField
           label="Requester name"
@@ -110,7 +121,8 @@ export function BookingForm({ room, date, slots, mutation, onSuccess, initialVal
         error={errors.purpose}
         onChange={(event) => updateField('purpose', event.target.value)}
       />
-      <Button type="submit" disabled={mutation.isPending}>
+      </section>
+      <Button type="submit" disabled={mutation.isPending} className="w-full sm:w-auto sm:justify-self-start">
         {mutation.isPending ? 'Submitting...' : submitLabel}
       </Button>
     </form>

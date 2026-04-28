@@ -7,13 +7,13 @@ export function AdminBookingTable({ bookings }) {
   const [expandedId, setExpandedId] = useState('')
 
   return (
-    <div className="overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-sm">
+    <div className="overflow-hidden rounded-[1.5rem] border border-zinc-200 bg-white shadow-sm">
       <div className="divide-y divide-zinc-200">
         {bookings.map((booking) => (
-          <article key={booking.id} className="grid gap-4 p-4">
+          <article key={booking.id} className="grid gap-4 p-4 sm:p-5">
             <button
               type="button"
-              className="grid gap-3 text-left md:grid-cols-[1.1fr_1fr_1fr_auto]"
+              className="grid gap-3 rounded-2xl text-left transition hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 md:grid-cols-[1.1fr_1fr_1fr_auto] md:items-center"
               onClick={() => setExpandedId((current) => (current === booking.id ? '' : booking.id))}
             >
               <div>
