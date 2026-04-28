@@ -4,62 +4,135 @@ import { useUpdateAdminBooking } from '../../hooks/mutations/useAdminBookingActi
 import { Button } from '../common/Button.jsx'
 import { InputField, SelectField, TextareaField } from '../common/FormFields.jsx'
 
+function SectionLabel({ children }) {
+  return (
+    <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">{children}</p>
+  )
+}
+
 export function AdminBookingEditor({ booking }) {
   const mutation = useUpdateAdminBooking()
   const [form, setForm] = useState({
-    requesterName: booking.requesterName,
+    requesterName:  booking.requesterName,
     requesterEmail: booking.requesterEmail,
     requesterPhone: booking.requesterPhone || '',
-    department: booking.department,
-    purpose: booking.purpose,
-    date: booking.date,
-    startTime: booking.startTime,
-    durationHours: booking.durationHours,
-    status: booking.status,
-    adminNote: booking.adminNote || '',
+    department:     booking.department,
+    purpose:        booking.purpose,
+    date:           booking.date,
+    startTime:      booking.startTime,
+    durationHours:  booking.durationHours,
+    status:         booking.status,
+    adminNote:      booking.adminNote || '',
   })
 
   function update(field, value) {
-    setForm((current) => ({ ...current, [field]: value }))
+    setForm((prev) => ({ ...prev, [field]: value }))
   }
 
   return (
     <form
-      className="grid gap-4 rounded-2xl border border-zinc-200 bg-zinc-50 p-4"
-      onSubmit={(event) => {
-        event.preventDefault()
-        mutation.mutate({ id: booking.id, payload: form })
-      }}
+      className="grid gap-6"
+      onSubmit={(e) => { e.preventDefault(); mutation.mutate({ id: booking.id, payload: form }) }}
     >
-      <div className="grid gap-3 md:grid-cols-3">
-        <InputField label="Name" value={form.requesterName} onChange={(event) => update('requesterName', event.target.value)} />
-        <InputField label="Email" value={form.requesterEmail} onChange={(event) => update('requesterEmail', event.target.value)} />
-        <InputField label="Phone" value={form.requesterPhone} onChange={(event) => update('requesterPhone', event.target.value)} />
+      <div>
+        <SectionLabel>Requester</SectionLabel>
+        <div className="grid gap-3 md:grid-cols-3">
+          <InputField
+            label="Name"
+            value={form.requesterName}
+            onChange={(e) => update('requesterName', e.target.value)}
+          />
+          <InputField
+            label="Email"
+            value={form.requesterEmail}
+            onChange={(e) => update('requesterEmail', e.target.value)}
+          />
+          <InputField
+            label="Phone"
+            value={form.requesterPhone}
+            onChange={(e) => update('requesterPhone', e.target.value)}
+          />
+        </div>
       </div>
-      <div className="grid gap-3 md:grid-cols-5">
-        <SelectField label="Department" value={form.department} onChange={(event) => update('department', event.target.value)}>
-          {DEPARTMENTS.map((department) => (
-            <option key={department} value={department}>{department}</option>
-          ))}
-        </SelectField>
-        <InputField label="Date" type="date" value={form.date} onChange={(event) => update('date', event.target.value)} />
-        <InputField label="Start" type="time" step="3600" value={form.startTime} onChange={(event) => update('startTime', event.target.value)} />
-        <SelectField label="Duration" value={form.durationHours} onChange={(event) => update('durationHours', Number(event.target.value))}>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((duration) => <option key={duration} value={duration}>{duration}h</option>)}
-        </SelectField>
-        <SelectField label="Status" value={form.status} onChange={(event) => update('status', event.target.value)}>
-          <option value="pending">Pending</option>
-          <option value="approved">Approved</option>
-          <option value="denied">Denied</option>
-          <option value="cancelled">Cancelled</option>
-        </SelectField>
+
+      <div>
+        <SectionLabel>Schedule</SectionLabel>
+        <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-4">
+          <SelectField
+            label="Department"
+            value={form.department}
+            onChange={(e) => update('department', e.target.value)}
+          >
+            {DEPARTMENTS.map((d) => <option key={d} value={d}>{d}</option>)}
+          </SelectField>
+          <InputField
+            label="Date"
+            type="date"
+            value={form.date}
+            onChange={(e) => update('date', e.target.value)}
+          />
+          <InputField
+            label="Start time"
+            type="time"
+            step="3600"
+            value={form.startTime}
+            onChange={(e) => update('startTime', e.target.value)}
+          />
+          <SelectField
+            label="Duration"
+            value={form.durationHours}
+            onChange={(e) => update('durationHours', Number(e.target.value))}
+          >
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((d) => (
+              <option key={d} value={d}>{d}h</option>
+            ))}
+          </SelectField>
+        </div>
       </div>
-      <TextareaField label="Purpose" value={form.purpose} onChange={(event) => update('purpose', event.target.value)} />
-      <InputField label="Admin note" value={form.adminNote} onChange={(event) => update('adminNote', event.target.value)} />
-      <Button type="submit" disabled={mutation.isPending} className="w-full sm:w-auto sm:justify-self-start">
-        {mutation.isPending ? 'Saving...' : 'Save admin edits'}
-      </Button>
-      {mutation.error ? <p className="text-sm text-rose-700">Save failed. Check booking conflicts and required fields.</p> : null}
+
+      <div>
+        <SectionLabel>Details</SectionLabel>
+        <div className="grid gap-3">
+          <TextareaField
+            label="Purpose"
+            value={form.purpose}
+            onChange={(e) => update('purpose', e.target.value)}
+          />
+          <div className="grid gap-3 sm:grid-cols-2">
+            <SelectField
+              label="Status"
+              value={form.status}
+              onChange={(e) => update('status', e.target.value)}
+            >
+              <option value="pending">Pending</option>
+              <option value="approved">Approved</option>
+              <option value="denied">Denied</option>
+              <option value="cancelled">Cancelled</option>
+            </SelectField>
+            <InputField
+              label="Admin note"
+              value={form.adminNote}
+              onChange={(e) => update('adminNote', e.target.value)}
+              placeholder="Internal note…"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-wrap items-center gap-3 border-t border-zinc-200 pt-4">
+        <Button type="submit" disabled={mutation.isPending}>
+          {mutation.isPending ? 'Saving…' : 'Save changes'}
+        </Button>
+        {mutation.isSuccess && (
+          <span className="text-sm font-medium text-emerald-700">Saved successfully.</span>
+        )}
+      </div>
+
+      {mutation.error && (
+        <p className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-2.5 text-sm text-rose-700">
+          Save failed. Check booking conflicts and required fields.
+        </p>
+      )}
     </form>
   )
 }
