@@ -1,9 +1,8 @@
-const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const { MongoMemoryServer } = require("mongodb-memory-server");
 
 process.env.ADMIN_EMAIL = "admin@example.com";
-process.env.ADMIN_PASSWORD_HASH = bcrypt.hashSync("admin-pass", 10);
+process.env.ADMIN_PASSWORD = "admin123";
 process.env.JWT_SECRET = "test-secret";
 
 const connectDb = require("../config/db");

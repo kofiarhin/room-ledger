@@ -10,10 +10,20 @@ const notFoundMiddleware = require("./middleware/notFoundMiddleware");
 const errorMiddleware = require("./middleware/errorMiddleware");
 
 const app = express();
+const localDevOriginPattern = /^http:\/\/(localhost|127\.0\.0\.1):517\d$/;
+
+function isAllowedOrigin(origin) {
+  if (!origin) return true;
+  if (config.clientOrigins.includes(origin)) return true;
+  return config.nodeEnv !== "production" && localDevOriginPattern.test(origin);
+}
 
 app.use(
   cors({
-    origin: config.clientOrigin,
+    origin(origin, callback) {
+      if (isAllowedOrigin(origin)) return callback(null, true);
+      return callback(new Error("Origin not allowed by CORS."));
+    },
     credentials: true,
   })
 );

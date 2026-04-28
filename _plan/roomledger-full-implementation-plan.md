@@ -20,7 +20,7 @@
 
 1. Admin auth mode: use httpOnly cookie with JWT.
    - Reason: browser-only admin dashboard, safer token storage, simple session restoration through `/api/admin/me`.
-   - Required server dependencies: `jsonwebtoken`, `bcryptjs`, `cookie-parser`.
+   - Required server dependencies: `jsonwebtoken`, `cookie-parser`.
    - Required CORS setting: credentials enabled with `CLIENT_ORIGIN`.
 2. Pending bookings block availability.
    - Reason: avoids double-requesting the same room/time while admins review.
@@ -41,7 +41,7 @@ Prepare the repo for backend auth/testing and frontend routing/query/testing/sty
 ### Tasks
 
 1. Update root `package.json`.
-   - Add backend dependencies: `bcryptjs`, `cookie-parser`, `jsonwebtoken`, `nodemon` if missing.
+   - Add backend dependencies: `cookie-parser`, `jsonwebtoken`, `nodemon` if missing.
    - Add backend dev dependencies: `jest`, `supertest`, `cross-env` if needed for test env.
    - Replace placeholder `test` script with backend test command or add `test:server`.
    - Keep existing `dev`, `server`, `client`, and `start` commands working.
@@ -51,7 +51,7 @@ Prepare the repo for backend auth/testing and frontend routing/query/testing/sty
    - Add `vitest`, `@testing-library/react`, `@testing-library/jest-dom`, `@testing-library/user-event`, `jsdom`.
    - Add scripts: `test`, `test:run` if desired.
 3. Add env examples.
-   - Root `.env.example`: `MONGO_URI`, `MONGO_URI_TEST`, `PORT`, `CLIENT_ORIGIN`, `ADMIN_EMAIL`, `ADMIN_PASSWORD_HASH`, `JWT_SECRET`, `NODE_ENV`.
+   - Root `.env.example`: `MONGO_URI`, `MONGO_URI_TEST`, `PORT`, `CLIENT_ORIGIN`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `JWT_SECRET`, `NODE_ENV`.
    - `client/.env.example`: `VITE_API_URL`.
 4. Add test config only where necessary.
    - Prefer Vite/Vitest config in `client/vite.config.js`.
@@ -281,7 +281,7 @@ Add secure admin login/session restoration and protected booking management.
 1. Implement admin login.
    - `POST /api/admin/login`.
    - Validate email/password.
-   - Compare password against `ADMIN_PASSWORD_HASH`.
+   - Compare password against `ADMIN_PASSWORD`.
    - Sign JWT with `JWT_SECRET`.
    - Set httpOnly cookie with secure attributes based on `NODE_ENV`.
    - Return `{ email }` only.

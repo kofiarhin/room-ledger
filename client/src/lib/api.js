@@ -9,6 +9,7 @@ if (!apiBaseUrl) {
 export const api = axios.create({
   baseURL: apiBaseUrl,
   withCredentials: true,
+  timeout: 10000,
 })
 
 export function apiErrorMessage(error) {

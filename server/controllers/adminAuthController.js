@@ -1,7 +1,5 @@
-const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("../utils/asyncHandler");
-const httpError = require("../utils/httpError");
 const { config } = require("../config/env");
 
 function cookieOptions() {
@@ -18,12 +16,9 @@ const loginAdmin = asyncHandler(async (req, res) => {
   const password = String(req.body.password || "");
 
   const expectedEmail = String(config.adminEmail || "").toLowerCase();
-  const hash = config.adminPasswordHash || "";
-  const isEmailValid = email && email === expectedEmail;
-  const isPasswordValid = hash && (await bcrypt.compare(password, hash));
 
-  if (!isEmailValid || !isPasswordValid) {
-    throw httpError(401, "Invalid admin credentials.");
+  if (email !== expectedEmail || password !== config.adminPassword) {
+    return res.status(401).json({ message: "Invalid credentials" });
   }
 
   const token = jwt.sign({ email }, config.jwtSecret || "test-secret", { expiresIn: "8h" });

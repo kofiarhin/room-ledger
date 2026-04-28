@@ -32,7 +32,7 @@ async function adminAgent() {
   const agent = request.agent(app);
   await agent
     .post("/api/admin/login")
-    .send({ email: "admin@example.com", password: "admin-pass" })
+    .send({ email: "admin@example.com", password: "admin123" })
     .expect(200);
   return agent;
 }

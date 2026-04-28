@@ -278,11 +278,11 @@ Use environment variables for admin auth and secrets:
 - `MONGO_URI`
 - `PORT`
 - `ADMIN_EMAIL`
-- `ADMIN_PASSWORD_HASH` or equivalent hashed credential
+- `ADMIN_PASSWORD`
 - `JWT_SECRET` if JWT is used
 - `CLIENT_ORIGIN`
 
-Never store plaintext admin passwords. Do not expose admin credentials or password hashes through APIs. Protect all `/api/admin/*` routes except login.
+Do not expose admin credentials through APIs. Protect all `/api/admin/*` routes except login.
 
 ### Environment Files
 
@@ -339,7 +339,7 @@ Frontend Vitest/React Testing Library tests:
 
 - Install missing dependencies before implementation:
   - Client likely needs `react-router-dom`, `@tanstack/react-query`, `@reduxjs/toolkit`, `react-redux`, `axios`, `tailwindcss` tooling, `vitest`, and React Testing Library packages.
-  - Server likely needs `bcryptjs` or `bcrypt`, `jsonwebtoken` or secure cookie/session tooling, `jest`, `supertest`, and possibly validation middleware.
+  - Server likely needs `jsonwebtoken` or secure cookie/session tooling, `jest`, `supertest`, and possibly validation middleware.
 - Decide whether admin auth uses Bearer JWT or httpOnly cookie before coding. Prefer httpOnly cookie for browser admin sessions if CORS and deployment are configured correctly.
 - Normalize dates and times consistently. Avoid comparing localized display strings.
 - Store only canonical values in MongoDB; format human-readable times in the client.

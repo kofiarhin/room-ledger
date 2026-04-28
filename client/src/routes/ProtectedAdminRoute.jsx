@@ -11,8 +11,13 @@ export function ProtectedAdminRoute() {
   const [isChecking, setIsChecking] = useState(!checked)
 
   useEffect(() => {
-    if (checked) return
+    if (checked) {
+      setIsChecking(false)
+      return undefined
+    }
+
     let active = true
+    setIsChecking(true)
 
     getCurrentAdmin()
       .then((currentAdmin) => {
@@ -22,8 +27,10 @@ export function ProtectedAdminRoute() {
         if (active) dispatch(clearAdmin())
       })
       .finally(() => {
-        dispatch(setAuthChecked())
-        if (active) setIsChecking(false)
+        if (active) {
+          dispatch(setAuthChecked())
+          setIsChecking(false)
+        }
       })
 
     return () => {
