@@ -1,0 +1,39 @@
+function FieldWrap({ label, error, helper, children }) {
+  return (
+    <label className="grid gap-2 text-sm font-medium text-zinc-800">
+      <span>{label}</span>
+      {children}
+      {helper ? <span className="text-xs font-normal text-zinc-500">{helper}</span> : null}
+      {error ? <span className="text-xs font-normal text-rose-700">{error}</span> : null}
+    </label>
+  )
+}
+
+const inputClass =
+  'w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-950 outline-none transition placeholder:text-zinc-400 focus:border-emerald-700 focus:ring-2 focus:ring-emerald-700/15'
+
+export function InputField({ label, error, helper, ...props }) {
+  return (
+    <FieldWrap label={label} error={error} helper={helper}>
+      <input className={inputClass} {...props} />
+    </FieldWrap>
+  )
+}
+
+export function SelectField({ label, error, helper, children, ...props }) {
+  return (
+    <FieldWrap label={label} error={error} helper={helper}>
+      <select className={inputClass} {...props}>
+        {children}
+      </select>
+    </FieldWrap>
+  )
+}
+
+export function TextareaField({ label, error, helper, ...props }) {
+  return (
+    <FieldWrap label={label} error={error} helper={helper}>
+      <textarea className={`${inputClass} min-h-28 resize-y`} {...props} />
+    </FieldWrap>
+  )
+}

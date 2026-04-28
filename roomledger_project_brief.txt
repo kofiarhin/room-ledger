@@ -1,0 +1,183 @@
+RoomLedger — Project Brief
+
+1. Project Overview
+RoomLedger is a simple conference room booking system for managing room availability, booking requests, and admin approvals.
+
+The MVP focuses on two conference rooms:
+- Conference Room A
+- Conference Room B
+
+Users can view room availability, request a booking, receive a unique booking ID, and later check the status of their request without needing an account.
+
+Admins can review, approve, deny, edit, or delete booking requests from a private admin dashboard.
+
+---
+
+2. Core Problem
+- Overlapping bookings
+- No visibility of who booked what
+- No centralized system
+- Difficulty tracking booking status
+
+---
+
+3. MVP Goals
+Users:
+- Select a room
+- View availability (Mon–Fri, 8AM–5PM)
+- Book valid time slots
+- Receive booking ID
+- Check/edit pending bookings
+
+Admins:
+- View all bookings
+- Approve/deny/edit/delete
+- Prevent overlaps
+
+---
+
+4. Application Name
+RoomLedger
+Tagline: Smart scheduling. Zero conflicts.
+
+---
+
+5. User Types
+- User (no login, uses booking ID)
+- Admin (secured route)
+
+---
+
+6. User Flow
+1. Homepage → select room
+2. Calendar view → pick date
+3. View available slots
+4. Select start time + duration
+5. Fill booking form
+6. Submit → receive Booking ID
+
+---
+
+7. Booking Status
+Route: /status
+- Enter Booking ID
+- View details + status
+- Edit/cancel if pending
+
+---
+
+8. Admin Flow
+Route: /admin/login → /admin/dashboard
+
+Admin can:
+- Approve / Deny
+- Edit / Delete
+- View full details
+
+---
+
+9. Booking Logic
+- Hours: 8AM–5PM
+- Days: Mon–Fri only
+- No overlaps:
+  newStart < existingEnd && newEnd > existingStart
+
+---
+
+10. Data Models
+
+Room:
+{
+  name,
+  slug,
+  isActive
+}
+
+Booking:
+{
+  bookingId,
+  room,
+  requesterName,
+  requesterEmail,
+  department,
+  purpose,
+  date,
+  startTime,
+  endTime,
+  durationHours,
+  status,
+  adminNote,
+  createdAt,
+  updatedAt
+}
+
+---
+
+11. API Routes
+
+Rooms:
+GET /api/rooms
+
+Availability:
+GET /api/availability?roomId=&date=
+
+Bookings:
+POST /api/bookings
+GET /api/bookings/status/:bookingId
+PATCH /api/bookings/status/:bookingId
+
+Admin:
+POST /api/admin/login
+GET /api/admin/bookings
+PATCH /api/admin/bookings/:id/approve
+PATCH /api/admin/bookings/:id/deny
+
+---
+
+12. Edge Cases
+- Overlapping bookings
+- Booking outside working hours
+- Weekend booking
+- Editing conflicts
+- Invalid booking ID
+
+---
+
+13. Tech Stack
+Frontend:
+- React + Vite
+- Tailwind
+- TanStack Query
+
+Backend:
+- Node.js
+- Express
+- MongoDB
+
+---
+
+14. Folder Structure
+roomledger/
+  client/
+  server/
+  .env
+  package.json
+
+---
+
+15. MVP Features
+- Room selection
+- Calendar
+- Dynamic slots
+- Booking form
+- Booking ID
+- Status page
+- Admin dashboard
+
+---
+
+16. Future Features
+- Email notifications
+- Calendar sync
+- Recurring bookings
+- Analytics
