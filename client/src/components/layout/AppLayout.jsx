@@ -22,9 +22,6 @@ export function AppLayout() {
             <NavLink className={navClass} to="/status">
               Status
             </NavLink>
-            <NavLink className={navClass} to="/admin/dashboard">
-              Admin
-            </NavLink>
           </nav>
         </div>
       </header>

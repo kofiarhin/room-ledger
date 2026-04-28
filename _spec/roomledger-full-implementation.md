@@ -96,7 +96,7 @@ Replace the Vite placeholder screen entirely. RoomLedger should feel like a focu
 
 Recommended UI structure:
 
-- Top navigation with brand, public status link, and admin link.
+- Top navigation with brand and public status link only. Admin must not appear publicly.
 - Home screen with concise room selection and current-day availability summary.
 - Room booking screen with a two-column desktop layout: date/availability controls on the left, booking form/details on the right. Collapse to one column on mobile.
 - Status screen with lookup form, result panel, and clear status badge.
@@ -186,7 +186,7 @@ newStart < existingEnd && newEnd > existingStart
 
 Conflict checks must include `pending` and `approved` bookings. Ignore `denied` and `cancelled` bookings. Editing must exclude the booking currently being edited from conflict checks.
 
-Recommended slot granularity: 30 minutes. Valid durations should keep `endTime <= 17:00`; suggested MVP durations are 0.5, 1, 1.5, 2, 3, and 4 hours.
+Recommended slot granularity: 60 minutes. Valid durations are 1–9 hours.
 
 ### API Endpoints
 
@@ -471,8 +471,8 @@ Frontend Vitest/React Testing Library tests:
 ## Assumptions
 
 - Times are local to the deployment/business timezone.
-- Slot granularity is 30 minutes.
-- Valid duration choices include 0.5, 1, 1.5, 2, 3, and 4 hours.
+- Slot granularity is 60 minutes.
+- Valid duration choices include 1–9 hours.
 - Admin credentials are configured through environment variables.
 - The MVP uses MongoDB through Mongoose and does not require a separate user collection.
 

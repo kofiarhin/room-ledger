@@ -18,7 +18,7 @@ describe("booking routes", () => {
     const room = await firstRoom();
     const res = await request(app)
       .post("/api/bookings")
-      .send(validBooking({ room: room._id.toString(), department: "Legal", startTime: "08:30" }))
+      .send(validBooking({ room: room._id.toString(), department: "Legal", startTime: "08:15" }))
       .expect(400);
 
     expect(res.body.details.department).toBeDefined();
