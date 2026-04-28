@@ -36,6 +36,16 @@ function isWeekday(date) {
   return day >= 1 && day <= 5
 }
 
+function isPastDate(date) {
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+
+  const compare = new Date(date)
+  compare.setHours(0, 0, 0, 0)
+
+  return compare < today
+}
+
 function buildCalendarDays(monthDate) {
   const firstOfMonth = new Date(monthDate.getFullYear(), monthDate.getMonth(), 1)
   const startOffset = (firstOfMonth.getDay() + 6) % 7
@@ -61,7 +71,7 @@ export function DatePickerField({ value, onChange }) {
   }
 
   function selectDate(date) {
-    if (!isWeekday(date)) return
+    if (!isWeekday(date) || isPastDate(date)) return
     onChange(toDateKey(date))
   }
 
@@ -107,7 +117,7 @@ export function DatePickerField({ value, onChange }) {
           {calendarDays.map((date) => {
             const dateKey = toDateKey(date)
             const selected = dateKey === selectedKey
-            const disabled = !isSameMonth(date, visibleMonth) || !isWeekday(date)
+            const disabled = !isSameMonth(date, visibleMonth) || !isWeekday(date) || isPastDate(date)
 
             return (
               <button

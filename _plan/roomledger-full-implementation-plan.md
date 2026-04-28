@@ -434,7 +434,7 @@ Replace the placeholder app shell with routing, providers, shared API, and base 
    - Keep query keys stable and colocated near hooks.
 5. Implement route shell.
    - Shared top navigation.
-   - Public and admin links.
+   - Public links only: Rooms and Status. Admin routes must not appear in public navigation.
    - Main content container.
 6. Implement reusable UI primitives.
    - `Button`, `InputField`, `SelectField`, `TextareaField`.

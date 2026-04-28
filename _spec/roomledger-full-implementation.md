@@ -311,7 +311,7 @@ Backend Jest/Supertest tests:
 
 Frontend Vitest/React Testing Library tests:
 
-- Home renders room selection and status/admin navigation.
+- Home renders room selection and public status navigation only.
 - Room page loads availability and disables invalid submit states.
 - Booking form displays validation errors.
 - Successful booking displays booking ID.
