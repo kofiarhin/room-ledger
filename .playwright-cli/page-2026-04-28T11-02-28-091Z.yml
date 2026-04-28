@@ -1,0 +1,60 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "RL RoomLedger Smart scheduling. Zero conflicts." [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: RL
+        - generic [ref=e8]:
+          - generic [ref=e9]: RoomLedger
+          - generic [ref=e10]: Smart scheduling. Zero conflicts.
+      - navigation [ref=e11]:
+        - link "Rooms" [ref=e12] [cursor=pointer]:
+          - /url: /
+        - link "Status" [ref=e13] [cursor=pointer]:
+          - /url: /status
+  - main [ref=e14]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - paragraph [ref=e20]: RoomLedger
+          - heading "Reserve the right room in under a minute." [level=1] [ref=e21]
+          - paragraph [ref=e22]: Pick a room, choose an hourly weekday slot, and track every request with a booking ID.
+        - generic [ref=e23]:
+          - link "Choose a room" [ref=e24] [cursor=pointer]:
+            - /url: "#rooms"
+            - text: Choose a room
+            - img [ref=e25]
+          - link "Check booking status" [ref=e27] [cursor=pointer]:
+            - /url: /status
+      - generic [ref=e29]:
+        - generic [ref=e30]:
+          - generic [ref=e31]:
+            - paragraph [ref=e32]: Booking window
+            - paragraph [ref=e33]: 08:00-17:00
+          - generic [ref=e34]: Weekdays
+        - generic [ref=e35]:
+          - generic [ref=e36]:
+            - generic [ref=e37]: 08:00
+            - generic [ref=e38]: Focus setup
+          - generic [ref=e40]:
+            - generic [ref=e41]: 10:00
+            - generic [ref=e42]: Team review
+          - generic [ref=e44]:
+            - generic [ref=e45]: 13:00
+            - generic [ref=e46]: Open block
+          - generic [ref=e48]:
+            - generic [ref=e49]: 15:00
+            - generic [ref=e50]: Planning
+        - generic [ref=e53]:
+          - generic [ref=e54]: Pick room
+          - generic [ref=e55]: Check overlap
+          - generic [ref=e56]: Submit request
+          - generic [ref=e57]: Track status
+          - generic [ref=e58]: Pick room
+          - generic [ref=e59]: Check overlap
+          - generic [ref=e60]: Submit request
+          - generic [ref=e61]: Track status
+        - generic [ref=e62]:
+          - generic [ref=e63]: Hourly
+          - generic [ref=e64]: 1-9 hrs
+          - generic [ref=e65]: Reviewed
