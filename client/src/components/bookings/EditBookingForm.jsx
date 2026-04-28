@@ -29,9 +29,9 @@ export function EditBookingForm({ booking }) {
   }
 
   return (
-    <form className="grid gap-4 rounded-2xl border border-zinc-200 bg-zinc-50 p-4" onSubmit={handleSubmit}>
+    <form className="grid gap-4 rounded-2xl border border-white/10 bg-zinc-950/35 p-4" onSubmit={handleSubmit}>
       <ErrorMessage message={mutation.error ? apiErrorMessage(mutation.error) : ''} />
-      {mutation.isSuccess ? <p className="rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-800">Booking updated.</p> : null}
+      {mutation.isSuccess ? <p className="rounded-2xl border border-emerald-300/25 bg-emerald-400/10 px-4 py-3 text-sm font-medium text-emerald-200">Booking updated.</p> : null}
       <div className="grid gap-4 sm:grid-cols-2">
         <InputField label="Name" value={form.requesterName} onChange={(event) => update('requesterName', event.target.value)} />
         <InputField label="Email" type="email" value={form.requesterEmail} onChange={(event) => update('requesterEmail', event.target.value)} />

@@ -14,11 +14,11 @@ export function BookingStatusPanel({ booking }) {
   const isReadOnly = booking.status !== 'pending'
 
   return (
-    <div className="grid gap-6 rounded-[1.5rem] border border-zinc-200 bg-white p-5 shadow-[0_20px_48px_-38px_rgba(24,24,27,0.55)] sm:p-6">
+    <div className="grid gap-6 rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-5 shadow-[0_20px_48px_-38px_rgba(0,0,0,0.85)] sm:p-6">
       <BookingSummary booking={booking} />
       <ErrorMessage message={cancelMutation.error ? apiErrorMessage(cancelMutation.error) : ''} />
       {isReadOnly ? (
-        <p className="rounded-2xl bg-zinc-100 px-4 py-3 text-sm text-zinc-700">
+        <p className="rounded-2xl bg-white/[0.06] px-4 py-3 text-sm text-zinc-400">
           This booking is read-only because its status is {booking.status}.
         </p>
       ) : (

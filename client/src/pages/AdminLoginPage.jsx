@@ -21,13 +21,13 @@ export function AdminLoginPage() {
 
   return (
     <div className="mx-auto grid max-w-md gap-6">
-      <div className="rounded-[2rem] border border-zinc-200 bg-white p-6 shadow-[0_24px_60px_-42px_rgba(24,24,27,0.6)]">
-        <p className="text-sm font-semibold uppercase tracking-wide text-emerald-800">Private workspace</p>
-        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-950">Admin login</h1>
-        <p className="mt-3 text-sm leading-6 text-zinc-600">Review and manage RoomLedger booking requests.</p>
+      <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-[0_24px_60px_-42px_rgba(0,0,0,0.85)]">
+        <p className="text-sm font-semibold uppercase tracking-wide text-emerald-300">Private workspace</p>
+        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-100">Admin login</h1>
+        <p className="mt-3 text-sm leading-6 text-zinc-500">Review and manage RoomLedger booking requests.</p>
       </div>
       <form
-        className="grid gap-4 rounded-[1.5rem] border border-zinc-200 bg-white p-5 shadow-sm"
+        className="grid gap-4 rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-5 shadow-sm"
         onSubmit={(event) => {
           event.preventDefault()
           login.mutate(form)

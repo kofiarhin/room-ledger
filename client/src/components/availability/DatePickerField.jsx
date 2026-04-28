@@ -78,28 +78,28 @@ export function DatePickerField({ value, onChange }) {
   return (
     <section className="grid gap-3" aria-labelledby="booking-date-label">
       <div className="grid gap-1">
-        <span id="booking-date-label" className="text-sm font-medium text-zinc-800">
+        <span id="booking-date-label" className="text-sm font-medium text-zinc-200">
           Booking date
         </span>
         <span className="text-xs text-zinc-500">Weekdays only.</span>
       </div>
 
-      <div className="rounded-2xl border border-zinc-200 bg-white p-3 shadow-sm">
+      <div className="rounded-2xl border border-white/10 bg-zinc-950/45 p-3 shadow-sm">
         <div className="mb-3 flex items-center justify-between gap-3">
           <button
             type="button"
-            className="grid size-10 place-items-center rounded-full border border-zinc-200 text-zinc-700 transition hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 active:translate-y-px"
+            className="grid size-10 place-items-center rounded-full border border-white/10 text-zinc-300 transition hover:bg-white/[0.07] focus:outline-none focus:ring-2 focus:ring-emerald-300/20 active:translate-y-px"
             onClick={() => moveMonth(-1)}
             aria-label="Previous month"
           >
             <ChevronLeftIcon aria-hidden="true" />
           </button>
-          <p className="text-sm font-semibold text-zinc-950" aria-live="polite">
+          <p className="text-sm font-semibold text-zinc-100" aria-live="polite">
             {monthFormatter.format(visibleMonth)}
           </p>
           <button
             type="button"
-            className="grid size-10 place-items-center rounded-full border border-zinc-200 text-zinc-700 transition hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 active:translate-y-px"
+            className="grid size-10 place-items-center rounded-full border border-white/10 text-zinc-300 transition hover:bg-white/[0.07] focus:outline-none focus:ring-2 focus:ring-emerald-300/20 active:translate-y-px"
             onClick={() => moveMonth(1)}
             aria-label="Next month"
           >
@@ -123,11 +123,11 @@ export function DatePickerField({ value, onChange }) {
               <button
                 type="button"
                 key={dateKey}
-                className={`aspect-square min-h-10 rounded-xl text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-emerald-700/20 ${
+                className={`aspect-square min-h-10 rounded-xl text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-emerald-300/20 ${
                   selected
-                    ? 'bg-zinc-950 text-white'
-                    : 'text-zinc-800 hover:bg-emerald-50 hover:text-emerald-800'
-                } ${disabled ? 'cursor-not-allowed text-zinc-300 hover:bg-transparent hover:text-zinc-300' : ''}`}
+                    ? 'bg-emerald-400 text-zinc-950'
+                    : 'text-zinc-300 hover:bg-emerald-400/10 hover:text-emerald-200'
+                } ${disabled ? 'cursor-not-allowed text-zinc-700 hover:bg-transparent hover:text-zinc-700' : ''}`}
                 onClick={() => selectDate(date)}
                 disabled={disabled}
                 aria-pressed={selected}

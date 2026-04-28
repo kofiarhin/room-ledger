@@ -56,10 +56,10 @@ export function BookingForm({ room, date, slots, mutation, onSuccess, initialVal
   return (
     <form className="grid gap-5" onSubmit={handleSubmit}>
       <ErrorMessage message={mutation.error ? apiErrorMessage(mutation.error) : ''} />
-      <section className="grid gap-3 rounded-3xl border border-zinc-200 bg-zinc-50 p-4">
+      <section className="grid gap-3 rounded-3xl border border-white/10 bg-zinc-950/35 p-4">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-wide text-emerald-800">Step 2</p>
-          <h3 className="mt-1 text-lg font-semibold tracking-tight text-zinc-950">Choose a slot</h3>
+          <p className="text-sm font-semibold uppercase tracking-wide text-emerald-300">Step 2</p>
+          <h3 className="mt-1 text-lg font-semibold tracking-tight text-zinc-100">Choose a slot</h3>
         </div>
         <SlotPicker
           slots={slots}
@@ -71,13 +71,13 @@ export function BookingForm({ room, date, slots, mutation, onSuccess, initialVal
           }}
           onDurationChange={(value) => updateField('durationHours', value)}
         />
-        {errors.startTime ? <p className="text-xs text-rose-700">{errors.startTime}</p> : null}
-        {errors.durationHours ? <p className="text-xs text-rose-700">{errors.durationHours}</p> : null}
+        {errors.startTime ? <p className="text-xs text-rose-300">{errors.startTime}</p> : null}
+        {errors.durationHours ? <p className="text-xs text-rose-300">{errors.durationHours}</p> : null}
       </section>
-      <section className="grid gap-4 rounded-3xl border border-zinc-200 bg-white p-4">
+      <section className="grid gap-4 rounded-3xl border border-white/10 bg-zinc-950/20 p-4">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-wide text-emerald-800">Step 3</p>
-          <h3 className="mt-1 text-lg font-semibold tracking-tight text-zinc-950">Requester details</h3>
+          <p className="text-sm font-semibold uppercase tracking-wide text-emerald-300">Step 3</p>
+          <h3 className="mt-1 text-lg font-semibold tracking-tight text-zinc-100">Requester details</h3>
         </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <InputField

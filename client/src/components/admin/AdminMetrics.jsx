@@ -1,11 +1,11 @@
 import { CheckCircledIcon, ClockIcon, CrossCircledIcon, ReaderIcon, StopIcon } from '@radix-ui/react-icons'
 
 const ITEMS = [
-  { key: 'total',     label: 'Total',     Icon: ReaderIcon,       bar: 'bg-zinc-400',    tone: 'bg-zinc-100 text-zinc-600' },
-  { key: 'pending',   label: 'Pending',   Icon: ClockIcon,        bar: 'bg-amber-400',   tone: 'bg-amber-50 text-amber-700' },
-  { key: 'approved',  label: 'Approved',  Icon: CheckCircledIcon, bar: 'bg-emerald-500', tone: 'bg-emerald-50 text-emerald-800' },
-  { key: 'denied',    label: 'Denied',    Icon: CrossCircledIcon, bar: 'bg-rose-500',    tone: 'bg-rose-50 text-rose-700' },
-  { key: 'cancelled', label: 'Cancelled', Icon: StopIcon,         bar: 'bg-zinc-300',    tone: 'bg-zinc-100 text-zinc-500' },
+  { key: 'total',     label: 'Total',     Icon: ReaderIcon,       bar: 'bg-zinc-500',    tone: 'bg-white/[0.06] text-zinc-300' },
+  { key: 'pending',   label: 'Pending',   Icon: ClockIcon,        bar: 'bg-amber-400',   tone: 'bg-amber-400/10 text-amber-200' },
+  { key: 'approved',  label: 'Approved',  Icon: CheckCircledIcon, bar: 'bg-emerald-400', tone: 'bg-emerald-400/10 text-emerald-200' },
+  { key: 'denied',    label: 'Denied',    Icon: CrossCircledIcon, bar: 'bg-rose-400',    tone: 'bg-rose-400/10 text-rose-200' },
+  { key: 'cancelled', label: 'Cancelled', Icon: StopIcon,         bar: 'bg-zinc-600',    tone: 'bg-white/[0.06] text-zinc-400' },
 ]
 
 export function AdminMetrics({ bookings }) {
@@ -22,7 +22,7 @@ export function AdminMetrics({ bookings }) {
       {ITEMS.map(({ key, label, Icon, bar, tone }) => (
         <div
           key={key}
-          className="overflow-hidden rounded-2xl border border-zinc-200/80 bg-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md"
+          className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] shadow-sm transition duration-300 hover:-translate-y-0.5 hover:bg-white/[0.06]"
         >
           <div className={`h-1 ${bar}`} />
           <div className="p-4">
@@ -32,7 +32,7 @@ export function AdminMetrics({ bookings }) {
                 <Icon aria-hidden="true" className="size-4" />
               </span>
             </div>
-            <p className="mt-3 font-mono text-4xl font-bold leading-none text-zinc-950">{counts[key]}</p>
+            <p className="mt-3 font-mono text-4xl font-bold leading-none text-zinc-100">{counts[key]}</p>
           </div>
         </div>
       ))}

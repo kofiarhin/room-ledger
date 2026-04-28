@@ -119,17 +119,17 @@ export function AdminBookingEditor({ booking }) {
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center gap-3 border-t border-zinc-200 pt-4">
+      <div className="flex flex-wrap items-center gap-3 border-t border-white/10 pt-4">
         <Button type="submit" disabled={mutation.isPending}>
           {mutation.isPending ? 'Saving…' : 'Save changes'}
         </Button>
         {mutation.isSuccess && (
-          <span className="text-sm font-medium text-emerald-700">Saved successfully.</span>
+          <span className="text-sm font-medium text-emerald-200">Saved successfully.</span>
         )}
       </div>
 
       {mutation.error && (
-        <p className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-2.5 text-sm text-rose-700">
+        <p className="rounded-xl border border-rose-300/25 bg-rose-400/10 px-4 py-2.5 text-sm text-rose-200">
           Save failed. Check booking conflicts and required fields.
         </p>
       )}

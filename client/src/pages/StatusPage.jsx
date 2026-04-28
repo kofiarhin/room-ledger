@@ -12,15 +12,15 @@ export function StatusPage() {
 
   return (
     <div className="mx-auto grid max-w-4xl gap-6">
-      <div className="rounded-[2rem] border border-zinc-200 bg-white p-6 shadow-[0_24px_60px_-42px_rgba(24,24,27,0.6)] sm:p-8">
-        <p className="text-sm font-semibold uppercase tracking-wide text-emerald-800">Booking lookup</p>
-        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-950 sm:text-4xl">Check booking status</h1>
-        <p className="mt-3 max-w-2xl text-base leading-7 text-zinc-600">
+      <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-[0_24px_60px_-42px_rgba(0,0,0,0.85)] sm:p-8">
+        <p className="text-sm font-semibold uppercase tracking-wide text-emerald-300">Booking lookup</p>
+        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-100 sm:text-4xl">Check booking status</h1>
+        <p className="mt-3 max-w-2xl text-base leading-7 text-zinc-500">
           Enter the booking ID you received after submitting a request. Pending bookings can still be edited or cancelled.
         </p>
       </div>
       <form
-        className="grid gap-3 rounded-[1.5rem] border border-zinc-200 bg-white p-4 shadow-sm sm:grid-cols-[1fr_auto] sm:p-5"
+        className="grid gap-3 rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-4 shadow-sm sm:grid-cols-[1fr_auto] sm:p-5"
         onSubmit={(event) => {
           event.preventDefault()
           setBookingId(input.trim().toUpperCase())

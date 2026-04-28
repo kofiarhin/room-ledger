@@ -1,8 +1,8 @@
 const statusStyles = {
-  pending: 'border-amber-200 bg-amber-50 text-amber-800',
-  approved: 'border-emerald-200 bg-emerald-50 text-emerald-800',
-  denied: 'border-rose-200 bg-rose-50 text-rose-800',
-  cancelled: 'border-zinc-200 bg-zinc-100 text-zinc-700',
+  pending: 'border-amber-300/30 bg-amber-400/10 text-amber-200',
+  approved: 'border-emerald-300/30 bg-emerald-400/10 text-emerald-200',
+  denied: 'border-rose-300/30 bg-rose-400/10 text-rose-200',
+  cancelled: 'border-zinc-500/40 bg-zinc-700/35 text-zinc-300',
 }
 
 export function StatusBadge({ status }) {

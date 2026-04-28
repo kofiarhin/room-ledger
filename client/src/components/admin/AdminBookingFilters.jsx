@@ -21,13 +21,13 @@ export function AdminBookingFilters({ filters, setFilters, rooms }) {
   ].filter(Boolean)
 
   return (
-    <section className="overflow-hidden rounded-3xl border border-zinc-200/80 bg-white shadow-sm">
-      <div className="flex items-center justify-between border-b border-zinc-100 px-5 py-3.5 sm:px-6">
+    <section className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] shadow-sm">
+      <div className="flex items-center justify-between border-b border-white/10 px-5 py-3.5 sm:px-6">
         <div className="flex items-center gap-2.5">
-          <span className="grid size-8 place-items-center rounded-lg bg-emerald-50 text-emerald-700">
+          <span className="grid size-8 place-items-center rounded-lg bg-emerald-400/10 text-emerald-200">
             <MixerHorizontalIcon aria-hidden="true" />
           </span>
-          <h2 className="text-sm font-semibold text-zinc-900">Filter bookings</h2>
+          <h2 className="text-sm font-semibold text-zinc-100">Filter bookings</h2>
         </div>
         <Button
           variant="ghost"
@@ -69,16 +69,16 @@ export function AdminBookingFilters({ filters, setFilters, rooms }) {
       </div>
 
       {activeChips.length > 0 && (
-        <div className="flex flex-wrap gap-2 border-t border-zinc-100 px-5 py-3 sm:px-6">
+        <div className="flex flex-wrap gap-2 border-t border-white/10 px-5 py-3 sm:px-6">
           {activeChips.map(({ key, label }) => (
             <span
               key={key}
-              className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-800"
+              className="inline-flex items-center gap-1.5 rounded-full border border-emerald-300/25 bg-emerald-400/10 px-3 py-1 text-xs font-medium text-emerald-200"
             >
               {label}
               <button
                 type="button"
-                className="rounded-full transition hover:text-emerald-950 focus:outline-none"
+                className="rounded-full transition hover:text-emerald-100 focus:outline-none"
                 onClick={() => update(key, '')}
                 aria-label={`Remove ${label} filter`}
               >

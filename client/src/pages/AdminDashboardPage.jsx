@@ -23,7 +23,7 @@ export function AdminDashboardPage() {
 
   return (
     <div className="grid gap-5 sm:gap-6">
-      <section className="overflow-hidden rounded-[1.75rem] bg-zinc-950 shadow-[0_28px_64px_-24px_rgba(0,0,0,0.5)]">
+      <section className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-zinc-950/82 shadow-[0_28px_64px_-24px_rgba(0,0,0,0.72)]">
         <div className="h-1 bg-linear-to-r from-emerald-500 via-emerald-400 to-teal-400" />
         <div className="grid gap-6 px-6 pt-6 pb-5 sm:px-8 sm:pt-7 sm:pb-6 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>

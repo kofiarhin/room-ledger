@@ -8,7 +8,7 @@ export function HomePage() {
 
   return (
     <div className="grid gap-7 sm:gap-9">
-      <section className="overflow-hidden rounded-[2rem] border border-zinc-200 bg-zinc-950 text-white shadow-[0_28px_70px_-48px_rgba(24,24,27,0.9)]">
+      <section className="overflow-hidden rounded-[2rem] border border-white/10 bg-zinc-950/80 text-white shadow-[0_28px_70px_-48px_rgba(0,0,0,0.9)]">
         <div className="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="grid content-between gap-8 p-6 sm:p-8 lg:min-h-[30rem] lg:p-10">
             <div>
@@ -23,7 +23,7 @@ export function HomePage() {
 
             <div className="grid gap-3 sm:flex sm:flex-wrap">
               <a
-                className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-white/40"
+                className="inline-flex min-h-12 items-center justify-center rounded-full bg-emerald-400 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-300/30"
                 href="#rooms"
               >
                 Choose a room
@@ -87,10 +87,10 @@ export function HomePage() {
         <section id="rooms" className="grid scroll-mt-28 gap-4">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
-            <p className="text-sm font-semibold uppercase tracking-wide text-emerald-800">Available rooms</p>
-              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-zinc-950">Select a space</h2>
+              <p className="text-sm font-semibold uppercase tracking-wide text-emerald-300">Available rooms</p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-zinc-100">Select a space</h2>
             </div>
-            <p className="max-w-md text-sm leading-6 text-zinc-600">
+            <p className="max-w-md text-sm leading-6 text-zinc-500">
               Requests are checked against pending and approved bookings before submission.
             </p>
           </div>

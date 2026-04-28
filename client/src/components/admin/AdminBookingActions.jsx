@@ -77,7 +77,7 @@ export function AdminBookingActions({ booking }) {
       />
 
       {hasError && (
-        <p className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-2.5 text-sm text-rose-700">
+        <p className="rounded-xl border border-rose-300/25 bg-rose-400/10 px-4 py-2.5 text-sm text-rose-200">
           Action failed. Check for conflicts or an expired login session.
         </p>
       )}
